@@ -1,24 +1,26 @@
 package datastructures.sort;
 
-import java.util.Scanner;
-
 /* Sort numbers in ascending order using selection sort
  *  process: first pass, starting at position 0, find the smallest number to the left in the entire list,
  * interchange smallest with position 0.
  * second pass , starting at position 1, find the smallest number on the right, interchange
  * the smallest with position 1.
  * repeat until the end.
+ * demo: https://www.youtube.com/watch?v=EwjnF7rFLns
  * */
 public class SelectionSort {
 
     /**
      * main method
+     * for loop
+     *  - first becomes current, last is list length minus one
+     *  - loop until end of list
      * @param list of numbers
-     * @param first element in array 0
-     * @param last element in the array size-1
      * @return
      */
-    public static int[] selectionSort(int[] list, int first, int last) {
+    public static int[] selectionSort(int[] list) {
+        int first = 0;
+        int last = list.length-1;
         for (int current = first; current < last; current++) {
             int smallest = getSmallest(list, current, last);
             swap(list, current, smallest);
