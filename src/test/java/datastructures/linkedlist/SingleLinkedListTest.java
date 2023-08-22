@@ -1,7 +1,6 @@
 package datastructures.linkedlist;
 
 import junit.framework.TestCase;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -11,17 +10,8 @@ public class SingleLinkedListTest extends TestCase {
     List<SingleLinkedList.Node> intData = new ArrayList<>();
     List<SingleLinkedList.Node> stringData = new ArrayList<>();
 
-/*    @Before
-    public void setup() {
-        intData.add(new SingleLinkedList.Node(1));
-        intData.add(new SingleLinkedList.Node(2));
-        intData.add(new SingleLinkedList.Node(3));
-        intData.add(new SingleLinkedList.Node(4));
-        intData.add(new SingleLinkedList.Node(5));
-    }*/
-
     @Test
-    public void testAppendVal() {
+    public void testAppendToList() {
         SingleLinkedList linkedList = new SingleLinkedList();
         linkedList.append(1);
         System.out.println(String.format("Result %s ", linkedList.head.val));
@@ -45,11 +35,39 @@ public class SingleLinkedListTest extends TestCase {
         intData.add(new SingleLinkedList.Node(5));
         intData.forEach(list::append);
         assertNotNull(list);
-        SingleLinkedList.Node current = list.head;
-        while (current != null) {
-            System.out.println(String.format("Data %s", current.val));
-            current = current.next;
-        }
+        SingleLinkedList.display(list.head);
+    }
+
+    @Test
+    public void testReverseList() {
+        SingleLinkedList list =  new SingleLinkedList();
+        intData.add(new SingleLinkedList.Node(1));
+        intData.add(new SingleLinkedList.Node(2));
+        intData.add(new SingleLinkedList.Node(3));
+        intData.add(new SingleLinkedList.Node(4));
+        intData.add(new SingleLinkedList.Node(5));
+        intData.forEach(list::append);
+        System.out.println("Before");
+        SingleLinkedList.display(list.head);
+        SingleLinkedList.Node n = list.reverse(list.head);
+        System.out.println("After");
+        SingleLinkedList.display(n);
+    }
+
+    @Test
+    public void testContainsLoop() {
+        SingleLinkedList linkedList = SingleLinkedList.createALoopInLinkedlist();
+        System.out.println("Linked list contains loop => " + linkedList.containsLoop(linkedList.head));
+        assertTrue(linkedList.containsLoop(linkedList.head));
+    }
+
+    @Test
+    public void testDetectAndRemoveLoop() {
+        SingleLinkedList linkedList = SingleLinkedList.createALoopInLinkedlist();
+        assertTrue(linkedList.containsLoop(linkedList.head));
+        linkedList.findAndRemoveLoop(linkedList.head);
+        SingleLinkedList.display(linkedList.head);
+        assertFalse(linkedList.containsLoop(linkedList.head));
     }
 
 }
