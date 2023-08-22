@@ -4,18 +4,18 @@ package datastructures.linkedlist;
  * Singly linked list
  * picture a linked as a stack or a queue
  */
-public class LinkedList {
+public class SingleLinkedList {
     Node head;
 
     /**
      * add element to end of list
      *
-     * @param data
+     * @param val
      */
-    public void append(int data) {
+    public void append(int val) {
         //if new list, no elements
         if (head == null) {
-            head = new Node(data);
+            head = new Node(val);
             return;
         }
 
@@ -23,14 +23,34 @@ public class LinkedList {
         while (current.next != null) {
             current = current.next;
         }
-        current.next = new Node(data);
+        current.next = new Node(val);
     }
+
+    /**
+     * add element to end of list
+     *
+     * @param node
+     */
+    public void append(Node node) {
+        //if new list, no elements
+        if (head == null) {
+            head = node;
+            return;
+        }
+
+        Node current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = node;
+    }
+
 
     /**
      * add element to the front, new head
      */
-    public void prepend(int data) {
-        Node newHead = new Node(data);
+    public void prepend(int val) {
+        Node newHead = new Node(val);
         newHead.next = head;
         head = newHead;
     }
@@ -38,19 +58,19 @@ public class LinkedList {
     /**
      * remove element from list
      *
-     * @param data
+     * @param val
      */
-    public void deleteWithValue(int data) {
+    public void deleteWithValue(int val) {
         if (head == null) return;
         //if value is the head..
-        if (head.data == data) {
+        if (head.val == val) {
             head = head.next;
             return;
         }
         //iterate through through the list and test the value
         Node current = head;
         while (current.next != null) {
-            if (current.next.data == data) {
+            if (current.next.val == val) {
                 current.next = current.next.next;
                 return;
             }
@@ -62,12 +82,17 @@ public class LinkedList {
     /**
      * inner class to manage list
      */
-    public class Node {
+    public static class Node {
+        int val;
         Node next;
-        int data;
-
-        public Node(int data) {
-            this.data = data;
+        public Node() {
+        }
+        public Node(int val, Node next) {
+            this.val = val;
+            this.next = next;
+        }
+        public Node(int val) {
+            this.val = val;
         }
     }
 }
