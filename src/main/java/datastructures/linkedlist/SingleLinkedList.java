@@ -92,14 +92,15 @@ public class SingleLinkedList {
      * reverse a linked list
      * Given a list Before 1 -> 2 -> 3 -> 4 -> 5, After reverse 5 -> 4 -> 3 -> 2 -> 1
      * Demo https://www.youtube.com/watch?v=jY-EUKXYT20
+     *
      * @param head
      * @return
      */
-    public Node reverse(Node head){
+    public Node reverse(Node head) {
         Node current = head;
         Node previous = null;
         Node next;
-        while(current != null) {
+        while (current != null) {
             next = current.next;
             current.next = previous;
             previous = current;
@@ -109,8 +110,8 @@ public class SingleLinkedList {
     }
 
     /**
-     *
      * Demo: https://www.youtube.com/watch?v=rOpnLs0lXy0
+     *
      * @param head
      * @return
      */
@@ -119,8 +120,8 @@ public class SingleLinkedList {
         Node slowPtr = head;
         while (fastPtr != null && fastPtr.next != null) {
             fastPtr = fastPtr.next.next;
-            slowPtr =slowPtr.next;
-            if (slowPtr==fastPtr) {
+            slowPtr = slowPtr.next;
+            if (slowPtr == fastPtr) {
                 return true;
             }
         }
@@ -131,6 +132,7 @@ public class SingleLinkedList {
      * Use this function to detect location of the loop
      * call a function break the loop
      * https://www.youtube.com/watch?v=LWDVM_kgvdE
+     *
      * @param head
      */
     public void findAndRemoveLoop(Node head) {
@@ -138,8 +140,8 @@ public class SingleLinkedList {
         Node slowPtr = head;
         while (fastPtr != null && fastPtr.next != null) {
             fastPtr = fastPtr.next.next;
-            slowPtr =slowPtr.next;
-            if (slowPtr==fastPtr) {
+            slowPtr = slowPtr.next;
+            if (slowPtr == fastPtr) {
                 removeLoop(slowPtr, head);
                 return;
             }
@@ -148,13 +150,14 @@ public class SingleLinkedList {
 
     /**
      * Demo: https://www.youtube.com/watch?v=LWDVM_kgvdE
+     *
      * @param slowPtr
      */
     private void removeLoop(Node slowPtr, Node head) {
         Node temp = head;
-        while (slowPtr.next!=temp.next){
+        while (slowPtr.next != temp.next) {
             temp = temp.next;
-            slowPtr =slowPtr.next;
+            slowPtr = slowPtr.next;
         }
         slowPtr.next = null;
     }
@@ -193,12 +196,15 @@ public class SingleLinkedList {
     public static class Node {
         int val;
         Node next;
+
         public Node() {
         }
+
         public Node(int val, Node next) {
             this.val = val;
             this.next = next;
         }
+
         public Node(int val) {
             this.val = val;
         }

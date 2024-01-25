@@ -2,3 +2,4 @@
 /target/test-classes/datastructures/sort/
 /.idea/
 java-algorithms-and-coding-tests.iml
+*.class
