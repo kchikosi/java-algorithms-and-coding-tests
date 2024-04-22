@@ -55,7 +55,7 @@ public class SynchronizeThreads {
      *  this method is called by one or more threads
      *  we use the 'synchronized' keyword to ensure single thread
      *  access at a time
-     */ 
+     */
     class Counter {
         public synchronized void increment() {
             count++;
